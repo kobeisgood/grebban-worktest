@@ -1,0 +1,24 @@
+.tile {
+    display: flex;
+    width: 100px;
+    height: 100px;
+    background-color: #fff;
+    margin: 15px 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #000;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    align-items: center;
+    justify-content: center;
+}
+
+.tile:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px #000;
+}
+
+.tile > p {
+    font-size: 50px;
+    font-weight: bold;
+    color: #000;
+}
