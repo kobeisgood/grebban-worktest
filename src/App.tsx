@@ -48,6 +48,7 @@ function App() {
         if (tiles[i][j] === null) {
           if (rowPressed !== i && colPressed !== j) return; // no empty spaces on row or column to move to
 
+          // If the empty space is on the same row or column as the pressed tile, move the pressed tile to the empty space
           if (rowPressed === i) {
             const direction = colPressed > j ? 1 : -1;
 
