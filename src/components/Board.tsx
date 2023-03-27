@@ -1,9 +1,9 @@
 import React from 'react';
-import './styles/board.css';
 import Tile from './Tile';
 import { BoardProps } from '../types/BoardProps';
+import '../styles/board.css';
 
-const Board = ({ rows, cols, tiles, onTileClick }: BoardProps) => {
+const Board = ({ rows, cols }: BoardProps) => {
     return (
         <div className="board">
             Hello
