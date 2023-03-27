@@ -4,8 +4,8 @@ import { TileProps } from "../types/TileProps";
 
 const Tile = ({ value, onClick }: TileProps) => {
   return (
-    <div className="tile" onClick={onClick}>
-      {value}
+    <div className={`${value === null ? "" : 'tile'}`} onClick={onClick}>
+      <p> {value} </p>
     </div>
   );
 };
