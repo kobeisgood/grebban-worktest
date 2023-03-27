@@ -23,3 +23,22 @@ input, textarea, button {
   text-align: center;
 }
 
+.winner {
+  font-size: 22px;
+  font-weight: bold;
+  color: #000;
+}
+
+/* Media queries */
+
+@media (max-width: 768px) {
+  body {
+    scale: 0.8;
+  }
+}
+
+@media (max-width: 495px) {
+  body {
+    scale: 0.6;
+  }
+}

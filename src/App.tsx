@@ -10,8 +10,8 @@ import { checkBoardSolved } from "./util/checkBoardSolved";
 import { isBoardSolvable } from "./util/isBoardSolvable";
 
 function App() {
-  const ROWS: number = 3;
-  const COLS: number = 3;
+  const ROWS: number = 4;
+  const COLS: number = 4;
 
   const [tiles, setTiles] = useState<(number | null)[][]>([[]]);
 
