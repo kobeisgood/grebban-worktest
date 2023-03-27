@@ -24,5 +24,4 @@ export const shuffleBoard = (
   }
 
   return shuffledMatrix;
-
 };
