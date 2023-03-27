@@ -10,8 +10,8 @@ import { checkBoardSolved } from "./util/checkBoardSolved";
 import { isBoardSolvable } from "./util/isBoardSolvable";
 
 function App() {
-  const ROWS: number = 4;
-  const COLS: number = 4;
+  const ROWS: number = 3;
+  const COLS: number = 3;
 
   const [tiles, setTiles] = useState<(number | null)[][]>([[]]);
 
@@ -39,21 +39,60 @@ function App() {
     handleShuffle(tileMatrix);
   }, []);
 
+  const handleTileClicked = (rowPressed: number, colPressed: number): void => {
+    const tile: number | null = tiles[rowPressed][colPressed];
+    if (tile === null) return;
+
+    for (let i = 0; i < ROWS; i++) {
+      for (let j = 0; j < COLS; j++) {
+        if (tiles[i][j] === null) {
+          if (rowPressed !== i && colPressed !== j) return; // no empty spaces on row or column to move to
+
+          if (rowPressed === i) {
+            const direction = colPressed > j ? 1 : -1;
+
+            for (let k = j; k !== colPressed; k += direction) {
+              tiles[i][k] = tiles[i][k + direction];
+            }
+
+            tiles[rowPressed][colPressed] = null;
+
+            setTiles([...tiles]);
+          }
+
+          if (colPressed === j) {
+            const direction = rowPressed > i ? 1 : -1;
+
+            for (let k = i; k !== rowPressed; k += direction) {
+              tiles[k][j] = tiles[k + direction][j];
+            }
+
+            tiles[rowPressed][colPressed] = null;
+
+            setTiles([...tiles]);
+          }
+        }
+      }
+    }
+  };
+
   return (
     <div className="App">
       <h1> Grebban Worktest</h1>
 
       {/* Game board with tiles in it */}
-      <Board rows={ROWS} cols={COLS} tiles={tiles} />
+      <Board
+        rows={ROWS}
+        cols={COLS}
+        tiles={tiles}
+        onTileClicked={handleTileClicked}
+      />
 
       {/* Button to shuffle the board */}
       <Button text={"Shuffle"} onClick={() => handleShuffle(tiles)} />
 
       {checkBoardSolved(tiles) && (
         <div className="winner">Congratulations! You solved the puzzle!</div>
-      )}
-      {!isBoardSolvable(tiles) && (
-        <div className="winner">The board is not solvable!</div>
       )}
     </div>
   );
